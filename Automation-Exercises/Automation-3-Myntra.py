@@ -68,18 +68,15 @@ def sort_by_whats_new(driver):
     )
 
 def filter_by_brand_jbl(driver):
-    # Click the JBL checkbox
     brand_filter = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, "//label[contains(text(),'JBL')]"))
     )
     brand_filter.click()
 
-    # Wait for the URL to contain "JBL"
     WebDriverWait(driver, 10).until(
         EC.url_contains("JBL")
     )
 
-    # Optional: Wait for product list to refresh
     WebDriverWait(driver, 15).until(
         EC.presence_of_element_located((By.CLASS_NAME, "product-base"))
     )

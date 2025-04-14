@@ -57,7 +57,6 @@ def newly_listed_date(driver):
             if "Apr" in date_text:
                 apr_dates.append(date_text)
 
-        # Check if we found any "Apr" dates
         if apr_dates:
             # Assert if the first "Apr" date is found
             first_apr_date = apr_dates[0]
