@@ -40,44 +40,16 @@ def select_time_newly_listed(driver):
     )
     newly_listed_option.click()
 
-
-def newly_listed_date(driver):
-    try:
-        # Wait for the date elements to be visible
-        listed_dates = WebDriverWait(driver, 10).until(
-            EC.visibility_of_all_elements_located((By.CLASS_NAME, 's-item__dynamic.s-item__listingDate'))
-        )
-
-        # Filter out the dates that contain "Apr"
-        apr_dates = []
-        for date_element in listed_dates:
-            bold_date_element = date_element.find_element(By.CLASS_NAME, 'BOLD')
-            date_text = bold_date_element.text
-
-            if "Apr" in date_text:
-                apr_dates.append(date_text)
-
-        if apr_dates:
-            # Assert if the first "Apr" date is found
-            first_apr_date = apr_dates[0]
-            print(f"First Apr date: {first_apr_date}")
-            return first_apr_date
-        else:
-            print("No 'Apr' dates found.")
-            return None
-
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return None
-
+def validate_newly_listed_date(driver):
+    date_text = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.CLASS_NAME, 's-item__dynamic.s-item__listingDate'))
+    )
+    assert "Apr" in date_text.text, f"Expected 'Apr' in item info, but got: {date_text.text}"
+    print(f"First item shows 'Apr' in date info: {date_text.text}")
 
 def test_automation_1(setup):
     navigate_to_ebay(setup)
     search_for_keyword(setup, "Selenium")
     click_buy_it_now(setup)
     select_time_newly_listed(setup)
-    first_item_date = newly_listed_date(setup)
-
-    # Print and assert that the first item's date contains "Apr"
-    assert first_item_date and "Apr" in first_item_date, "No item date found or 'Apr' is missing."
-    print(f"First item date: {first_item_date}")
+    validate_newly_listed_date(setup)
