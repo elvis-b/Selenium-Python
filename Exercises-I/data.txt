@@ -1,0 +1,4 @@
+empid,empname,emplocation,empsalary
+e001,iniyal,chennai,20000.00
+e002,aniyal,bangalore,25000.00
+e003,indulekha,trivandrum,18000.00
