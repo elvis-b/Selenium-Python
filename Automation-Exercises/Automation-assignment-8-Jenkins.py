@@ -44,14 +44,13 @@ def enter_sum_and_submit(driver):
     )
     math_text = math_label.text
 
-    # Use regex to extract the numbers
+    # Using regex to extract the numbers
     numbers = list(map(int, re.findall(r'\d+', math_text)))
     if len(numbers) == 2:
         total = numbers[0] + numbers[1]
     else:
         raise ValueError(f"Expected two numbers to sum, but found: {numbers}")
 
-    # Fill in the calculated sum
     answer_input = driver.find_element(By.NAME, "ssTestValue")
     answer_input.clear()
     answer_input.send_keys(str(total))
@@ -60,7 +59,6 @@ def enter_sum_and_submit(driver):
     submit_button.click()
 
 def validate_thank_you_message(driver):
-    # Wait until the element is visible
     thank_you = WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located((By.ID, 'thank-you-for-your-feedback'))
     )
