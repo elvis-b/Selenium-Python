@@ -24,7 +24,7 @@ def click_my_courses(driver):
     time.sleep(3)
 
 def click_angular_beginners_course(driver):
-    course_link = driver.find_element(By.XPATH, "//div[text()='Angular For Beginners']")
+    course_link = driver.find_element(By.CSS_SELECTOR, "div > .course-id-1")
     course_link.click()
 
 def select_helicopter_view_checkbox(driver):
