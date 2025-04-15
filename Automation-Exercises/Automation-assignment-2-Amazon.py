@@ -50,9 +50,5 @@ def test_automation_2(setup):
     click_clearance(setup)
     click_watches(setup)
     select_get_it_tomorrow(setup)
-
-    # Validate results message
     validate_results_message(setup)
-
-    # Validate the first item's name contains "Watch"
     validate_first_item_name(setup)
