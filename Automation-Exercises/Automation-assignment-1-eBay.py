@@ -22,8 +22,8 @@ def navigate_to_ebay(driver):
     driver.get("https://www.ebay.com")
 
 def search_for_keyword(driver, keyword="Selenium"):
-    search_box = driver.find_element(By.XPATH, "//input[@title='Search']")
-    submit_button = driver.find_element(By.XPATH, "//button[@type='submit']")
+    search_box = driver.find_element(By.CSS_SELECTOR, "form > div:nth-child(1) input")
+    submit_button = driver.find_element(By.CLASS_NAME, "gh-search-button__label")
     search_box.send_keys(keyword)
     submit_button.click()
 
